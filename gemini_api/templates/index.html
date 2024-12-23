@@ -1,0 +1,405 @@
+<!-- <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HS Code Finder</title>
+    <link rel="stylesheet" href="../stylesheet.css">
+</head>
+<body>
+    <h1>Find HS Codes</h1>
+    <input type="text" id="query" placeholder="Enter your query">
+    <button onclick="fetchHSCodes()">Get HS Codes</button>
+    <div id="loader">
+        <p>Loading...</p>
+    </div>
+    <pre id="response"></pre>
+
+    <script>
+        async function fetchHSCodes() {
+            const query = document.getElementById("query").value;
+            const responseElement = document.getElementById("response");
+            const loader = document.getElementById("loader");
+
+            responseElement.style.display = "none"; // Hide response
+            loader.style.display = "block"; // Show loader
+
+            try {
+                const response = await fetch("http://127.0.0.1:5000/get_hs_codes", {
+                    method: "POST",
+                    headers: {
+                        "Content-Type": "application/json",
+                    },
+                    body: JSON.stringify({ query }),
+                });
+
+                if (!response.ok) {
+                    throw new Error("Failed to fetch data");
+                }
+
+                const data = await response.json();
+                if (data.error) {
+                    throw new Error(data.error);
+                }
+
+                // Format the JSON response
+                responseElement.textContent = JSON.stringify(data, null, 2);
+                responseElement.style.backgroundColor = "#e9f7ef";
+            } catch (error) {
+                responseElement.textContent = `Error: ${error.message}`;
+                responseElement.classList.add("error");
+                responseElement.style.backgroundColor = "#f8d7da";
+            } finally {
+                loader.style.display = "none"; // Hide loader
+                responseElement.style.display = "block"; // Show response
+            }
+        }
+    </script>
+</body>
+</html> -->
+
+
+
+<!-- <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HS Code Finder</title> -->
+    <!-- Include DataTables CSS -->
+    <!-- <link rel="stylesheet" href="https://cdn.datatables.net/1.13.4/css/jquery.dataTables.min.css">
+    <link rel="stylesheet" href='../stylesheet.css'>
+</head>
+<body>
+    <h1>Find HS Codes</h1>
+    <input type="text" id="query" placeholder="Enter your query">
+    <button onclick="fetchHSCodes()">Get HS Codes</button>
+    <div id="loader">
+        <p>Loading...</p>
+    </div>
+    <div id="response" style="display: none;">
+        <table id="hsCodesTable" class="display">
+            <thead>
+                <tr>
+                    <th>HS Code</th>
+                    <th>Description</th>
+                </tr>
+            </thead>
+            <tbody></tbody>
+        </table>
+    </div>
+     -->
+    <!-- Include jQuery (First) -->
+    <!-- <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script> -->
+    
+    <!-- Include DataTables JS (After jQuery) -->
+    <!-- <script src="https://cdn.datatables.net/1.13.4/js/jquery.dataTables.min.js"></script> -->
+
+    <!-- <script>
+        async function fetchHSCodes() {
+            const query = document.getElementById("query").value;
+            const responseElement = document.getElementById("response");
+            const loader = document.getElementById("loader");
+
+            responseElement.style.display = "none"; // Hide response
+            loader.style.display = "block"; // Show loader
+
+            try {
+                const response = await fetch("http://127.0.0.1:5000/get_hs_codes", {
+                    method: "POST",
+                    headers: {
+                        "Content-Type": "application/json",
+                    },
+                    body: JSON.stringify({ query }),
+                });
+
+                if (!response.ok) {
+                    throw new Error("Failed to fetch data");
+                }
+
+                const data = await response.json();
+                if (data.error) {
+                    throw new Error(data.error);
+                }
+
+                // Assuming 'data' contains an array of objects with hs_code and description
+                const hsCodes = Array.isArray(data) ? data : data.codes || [];
+
+                // Populate the table
+                const tbody = document.querySelector("#hsCodesTable tbody");
+                tbody.innerHTML = ""; // Clear previous data
+                hsCodes.forEach(item => {
+                    const row = document.createElement("tr");
+                    const hsCodeCell = document.createElement("td");
+                    hsCodeCell.textContent = item.hs_code || "N/A";
+                    const descriptionCell = document.createElement("td");
+                    descriptionCell.textContent = item.description || "No description available";
+                    row.appendChild(hsCodeCell);
+                    row.appendChild(descriptionCell);
+                    tbody.appendChild(row);
+                });
+
+                // Initialize DataTable
+                $('#hsCodesTable').DataTable();
+
+                responseElement.style.display = "block"; // Show response
+            } catch (error) {
+                responseElement.textContent = `Error: ${error.message}`; // Fixed the template literal
+                responseElement.style.backgroundColor = "#f8d7da";
+                responseElement.style.display = "block";
+            } finally {
+                loader.style.display = "none"; // Hide loader
+            }
+        }
+    </script>
+</body>
+</html> -->
+
+<!-- 
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HS Code Finder</title> -->
+    <!-- Include DataTables CSS -->
+    <!-- <link rel="stylesheet" href="https://cdn.datatables.net/1.13.4/css/jquery.dataTables.min.css">
+    <link rel="stylesheet" href='../stylesheet.css'>
+</head>
+<body>
+    <h1>Find HS Codes</h1>
+    <input type="text" id="query" placeholder="Enter your query">
+    <button onclick="fetchHSCodes()">Get HS Codes</button>
+    <div id="loader">
+        <p>Loading...</p>
+    </div>
+    <div id="response" style="display: none;">
+        <table id="hsCodesTable" class="display">
+            <thead>
+                <tr>
+                    <th>HS Code</th>
+                    <th>Description</th>
+                </tr>
+            </thead>
+            <tbody></tbody>
+        </table>
+    </div> -->
+    
+    <!-- Include jQuery (First) -->
+    <!-- <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+     -->
+    <!-- Include DataTables JS (After jQuery) -->
+    <!-- <script src="https://cdn.datatables.net/1.13.4/js/jquery.dataTables.min.js"></script>
+
+    <script>
+        async function fetchHSCodes() {
+            const query = document.getElementById("query").value.trim();
+            const responseElement = document.getElementById("response");
+            const loader = document.getElementById("loader");
+
+            if (!query) {
+                alert("Please enter a valid query.");
+                return;
+            }
+
+            responseElement.style.display = "none"; // Hide response
+            loader.style.display = "block"; // Show loader
+
+            try {
+                const response = await fetch("http://127.0.0.1:5000/get_hs_codes", {
+                    method: "POST",
+                    headers: { "Content-Type": "application/json" },
+                    body: JSON.stringify({ query }),
+                });
+
+                if (!response.ok) throw new Error("Failed to fetch data");
+
+                const rawData = await response.json();
+                console.log("Raw response:", rawData);
+
+                const hsCodes = rawData.data?.HS_codes || []; // Access nested HS_codes
+
+                // Ensure the table body exists
+                const tbody = document.querySelector("#hsCodesTable tbody");
+                if (!tbody) throw new Error("Table body not found");
+
+                tbody.innerHTML = ""; // Clear previous data
+
+                if (hsCodes.length > 0) {
+                    hsCodes.forEach(item => {
+                        const row = document.createElement("tr");
+                        row.innerHTML = `
+                            <td>${item.code || "N/A"}</td>
+                            <td>${item.description || "No description available"}</td>
+                        `;
+                        tbody.appendChild(row);
+                    });
+                } else {
+                    const row = document.createElement("tr");
+                    row.innerHTML = `<td colspan="2">No HS codes found.</td>`;
+                    tbody.appendChild(row);
+                }
+
+                // Reinitialize DataTable
+                if ($.fn.dataTable.isDataTable('#hsCodesTable')) {
+                    $('#hsCodesTable').DataTable().clear().destroy(); // Clear and destroy
+                }
+
+                $('#hsCodesTable').DataTable({
+                    paging: true,
+                    searching: true,
+                    autoWidth: false,
+                });
+
+                responseElement.style.display = "block"; // Ensure response is displayed
+            } catch (error) {
+                console.error("Error:", error.message);
+                responseElement.textContent = `Error: ${error.message}`;
+                responseElement.style.backgroundColor = "#f8d7da";
+                responseElement.style.display = "block";
+            } finally {
+                loader.style.display = "none"; // Hide loader
+            }
+        } -->
+
+
+
+
+
+<!-- 
+    </script>
+</body>
+</html> -->
+
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HS Code Finder</title>
+    <!-- Include DataTables CSS -->
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.13.4/css/jquery.dataTables.min.css">
+    <link rel="stylesheet" href='../stylesheet.css'>
+</head>
+<body>
+    <h1>Find HS Codes</h1>
+    <input type="text" id="query" placeholder="Enter your query">
+    <button onclick="fetchHSCodes()">Get HS Codes</button>
+    <div id="loader" style="display: none;">
+        <p>Loading...</p>
+    </div>
+    <div id="response" style="display: none;">
+        <table id="hsCodesTable" class="display">
+            <thead>
+                <tr>
+                    <th>HS Code</th>
+                    <th>Description</th>
+                </tr>
+            </thead>
+            <tbody></tbody>
+        </table>
+    </div>
+    
+    <!-- Include jQuery (First) -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    
+    <!-- Include DataTables JS (After jQuery) -->
+    <script src="https://cdn.datatables.net/1.13.4/js/jquery.dataTables.min.js"></script>
+
+    <script>
+        async function fetchHSCodes() {
+            const query = document.getElementById("query").value.trim();
+            const loader = document.getElementById("loader");
+            const responseElement = document.getElementById("response");
+
+            if (!query) {
+                alert("Please enter a search query.");
+                return;
+            }
+
+            responseElement.style.display = "none";
+            loader.style.display = "block";
+
+            try {
+                const response = await fetch("http://127.0.0.1:5000/get_hs_codes", {
+                    method: "POST",
+                    headers: { "Content-Type": "application/json" },
+                    body: JSON.stringify({ query }),
+                });
+
+                if (response.status === 429) {
+                    throw new Error("API rate limit exceeded. Please try again later.");
+                }
+
+                if (!response.ok) throw new Error("Failed to fetch data");
+
+                const rawData = await response.text();
+                console.log("Raw response:", rawData);
+
+                const data = JSON.parse(rawData);
+                if (!data.success || !data.data.hs_codes) throw new Error("Invalid response data");
+
+                const hsCodes = data.data.hs_codes;
+                const tbody = document.querySelector("#hsCodesTable tbody");
+                if (!tbody) throw new Error("Table body not found");
+
+                tbody.innerHTML = ""; // Clear previous rows
+
+                // Deduplicate and handle missing descriptions
+                const uniqueHSCodes = hsCodes.filter(
+                    (item, index, self) => index === self.findIndex(t => t.hs_code === item.hs_code)
+                );
+
+                if (uniqueHSCodes.length > 0) {
+                    uniqueHSCodes.forEach(item => {
+                        const row = document.createElement("tr");
+
+                        const hsCodeCell = document.createElement("td");
+                        hsCodeCell.textContent = item.hs_code || "N/A";
+
+                        const productCell = document.createElement("td");
+                        productCell.textContent = item.product || "No description";
+
+                        row.appendChild(hsCodeCell);
+                        row.appendChild(productCell);
+
+                        tbody.appendChild(row);
+                    });
+                } else {
+                    const row = document.createElement("tr");
+                    const cell = document.createElement("td");
+                    cell.colSpan = 2;
+                    cell.textContent = "No data available.";
+                    row.appendChild(cell);
+                    tbody.appendChild(row);
+                }
+
+                // Reinitialize DataTable
+                if ($.fn.dataTable.isDataTable('#hsCodesTable')) {
+                    $('#hsCodesTable').DataTable().clear().destroy();
+                }
+
+                $('#hsCodesTable').DataTable({
+                    pageLength: 10,
+                    responsive: true,
+                });
+
+                responseElement.style.display = "block";
+            } catch (error) {
+                console.error(error);
+                responseElement.textContent = `Error: ${error.message}`;
+                responseElement.style.display = "block";
+            } finally {
+                loader.style.display = "none";
+            }
+        }
+
+    </script>
+</body>
+</html>
+
+
+
+ 
